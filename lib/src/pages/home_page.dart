@@ -57,13 +57,13 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: PDFView(
+        body: _sharedFiles.isNotEmpty && _sharedFiles.first.path.isNotEmpty ? PDFView(
         filePath: _sharedFiles.first.path,
         enableSwipe: true,
         swipeHorizontal: true,
         autoSpacing: true,
         pageFling: true,
-      ),
+      ) : const Center(child: Text("Nenhum arquivo selecionado"),),
       );
   }
 }
