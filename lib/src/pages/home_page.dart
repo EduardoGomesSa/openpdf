@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:openpdf/src/pages/pdf_viewer_page.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
