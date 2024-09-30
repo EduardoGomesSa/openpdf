@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:openpdf/src/pages/pdf_viewer_page.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 class HomePage extends StatefulWidget {
@@ -55,15 +56,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Visualizador de app'),
         ),
-        body: _sharedFiles.isNotEmpty && _sharedFiles.first.path.isNotEmpty ? PDFView(
-        filePath: _sharedFiles.first.path,
-        enableSwipe: true,
-        swipeHorizontal: true,
-        autoSpacing: true,
-        pageFling: true,
-      ) : const Center(child: Text("Nenhum arquivo selecionado"),),
+        body: _sharedFiles.isNotEmpty && _sharedFiles.first.path.isNotEmpty ? 
+        PdfViewerPage(path: _sharedFiles.first.path) : const Center(child: Text("Nenhum arquivo selecionado"),),
       );
   }
 }
