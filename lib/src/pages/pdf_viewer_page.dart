@@ -31,7 +31,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
           PDFView(
             filePath: widget.path,
             enableSwipe: true,
-            swipeHorizontal: false,
+            swipeHorizontal: true,
             autoSpacing: true,
             pageFling: true,
             onRender: (pages) {
