@@ -24,7 +24,7 @@ class LastPdfRepository {
 
     List<PdfViewerModel> list = result.map((row) {
       return PdfViewerModel(
-          id: row['id'] as int, path: row['path_pdf'] as String);
+          id: row['id'] != null ? row['id'] as int : 0, path: row['path_pdf'] as String);
     }).toList();
 
     return list;
