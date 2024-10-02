@@ -8,6 +8,13 @@ class LastPdfRepository {
   Future<int> insert(String pathPdf) async {
     final db = await Db.connection();
 
+    var pdfsAlreadyOpens = await getAll();
+
+    if (pdfsAlreadyOpens.length >= 10) {
+      db.delete('lasts_pdf_opens',
+          where: 'ID = ?', whereArgs: [pdfsAlreadyOpens.first.id]);
+    }
+
     var saved = await db.insert(
       'lasts_pdf_opens',
       {'path_pdf': pathPdf},
@@ -24,7 +31,8 @@ class LastPdfRepository {
 
     List<PdfViewerModel> list = result.map((row) {
       return PdfViewerModel(
-          id: row['id'] != null ? row['id'] as int : 0, path: row['path_pdf'] as String);
+          id: row['ID'] != null ? row['ID'] as int : 0,
+          path: row['path_pdf'] as String);
     }).toList();
 
     return list;

@@ -87,11 +87,11 @@ class _HomePageState extends State<HomePage> {
       ),
       body: _sharedFiles.isNotEmpty && _sharedFiles.first.path.isNotEmpty
           ? PdfViewerPage(path: _sharedFiles.first.path)
-          : listPdfOpens != null && listPdfOpens!.isNotEmpty
+          : listPdfOpens.isNotEmpty
               ? ListView.builder(
-                  itemCount: listPdfOpens!.length,
+                  itemCount: listPdfOpens.length,
                   itemBuilder: (context, index) {
-                    final pdf = listPdfOpens![index];
+                    final pdf = listPdfOpens[index];
                     return ListTile(
                       title: Text(pdf.path ?? "Caminho não encontrado"),
                       subtitle: Text("PDF #${index + 1}"),
