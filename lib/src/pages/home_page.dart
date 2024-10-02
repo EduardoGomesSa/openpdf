@@ -92,10 +92,21 @@ class _HomePageState extends State<HomePage> {
                   itemCount: listPdfOpens.length,
                   itemBuilder: (context, index) {
                     final pdf = listPdfOpens[index];
-                    return ListTile(
-                      title: Text(pdf.path ?? "Caminho não encontrado"),
-                      subtitle: Text("PDF #${index + 1}"),
+                    return TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  PdfViewerPage(path: pdf.path!)),
+                        );
+                      },
+                      child: Text(pdf.path ?? "Caminho não encontrado"),
                     );
+                    // return ListTile(
+                    //   title: Text(pdf.path ?? "Caminho não encontrado"),
+                    //   subtitle: Text("PDF #${index + 1}"),
+                    // );
                   },
                 )
               : const Center(
