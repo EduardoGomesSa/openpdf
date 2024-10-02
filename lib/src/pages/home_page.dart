@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                                     PdfViewerPage(path: pdf.path!)),
                           );
                         },
-                        child: Text('$fileName - 10/10/24 22:10'),
+                        child: Text('$fileName - ${pdf.createdAt}'),
                       ),
                     );
                   },
