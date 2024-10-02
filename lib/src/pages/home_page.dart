@@ -3,8 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:openpdf/src/controllers/last_pdf_controller.dart';
 import 'package:openpdf/src/models/pdf_viewer_model.dart';
-import 'package:openpdf/src/pages/pdf_viewer_page.dart';
+import 'package:openpdf/src/pages/widgets/pdf_viewer_page.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+import 'package:path/path.dart' as path;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -83,7 +84,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Visualizador de app'),
+        title: const Text('Visualizador de PDF'),
       ),
       body: _sharedFiles.isNotEmpty && _sharedFiles.first.path.isNotEmpty
           ? PdfViewerPage(path: _sharedFiles.first.path)
@@ -92,21 +93,23 @@ class _HomePageState extends State<HomePage> {
                   itemCount: listPdfOpens.length,
                   itemBuilder: (context, index) {
                     final pdf = listPdfOpens[index];
-                    return TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  PdfViewerPage(path: pdf.path!)),
-                        );
-                      },
-                      child: Text(pdf.path ?? "Caminho não encontrado"),
+                    final fileName =
+                        path.basename(pdf.path ?? "Caminho não encontrado");
+              
+                    return Align(
+                      alignment: Alignment.centerLeft,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    PdfViewerPage(path: pdf.path!)),
+                          );
+                        },
+                        child: Text('$fileName - 10/10/24 22:10'),
+                      ),
                     );
-                    // return ListTile(
-                    //   title: Text(pdf.path ?? "Caminho não encontrado"),
-                    //   subtitle: Text("PDF #${index + 1}"),
-                    // );
                   },
                 )
               : const Center(
