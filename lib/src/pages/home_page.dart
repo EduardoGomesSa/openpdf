@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:openpdf/src/controllers/last_pdf_controller.dart';
 import 'package:openpdf/src/models/pdf_viewer_model.dart';
 import 'package:openpdf/src/pages/widgets/pdf_viewer_page.dart';
@@ -82,6 +83,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final dateFormat = DateFormat('dd/MM/yy HH:mm:ss');
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Visualizador de PDF'),
@@ -107,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                                     PdfViewerPage(path: pdf.path!)),
                           );
                         },
-                        child: Text('$fileName - ${pdf.createdAt}'),
+                        child: Text('$fileName - ${pdf.createdAt != null ? dateFormat.format(pdf.createdAt!) : "Horário não disponível"}'),
                       ),
                     );
                   },

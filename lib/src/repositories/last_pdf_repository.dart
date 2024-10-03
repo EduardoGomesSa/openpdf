@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:openpdf/src/models/pdf_viewer_model.dart';
 import 'package:openpdf/src/repositories/databases/db.dart';
 import 'package:sqflite/sqflite.dart';
@@ -12,7 +11,7 @@ class LastPdfRepository {
 
     if (pdfsAlreadyOpens.length >= 10) {
       db.delete('lasts_pdf_opens',
-          where: 'ID = ?', whereArgs: [pdfsAlreadyOpens.first.id]);
+          where: 'ID = ?', whereArgs: [pdfsAlreadyOpens.last.id]);
     }
 
     var saved = await db.insert(
@@ -25,9 +24,10 @@ class LastPdfRepository {
   }
 
   Future<List<PdfViewerModel>> getAll() async {
+    
     final db = await Db.connection();
 
-    final result = await db.query('lasts_pdf_opens');
+    final result = await db.query('lasts_pdf_opens', orderBy: 'ID DESC');
 
     List<PdfViewerModel> list = result.map((row) {
       return PdfViewerModel(
