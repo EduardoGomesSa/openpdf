@@ -12,12 +12,12 @@ class LastPdfRepository {
 
     if (pdfsAlreadyOpens.length >= 10) {
       db.delete('lasts_pdf_opens',
-          where: 'id = ?', whereArgs: [pdfsAlreadyOpens.first.id]);
+          where: 'ID = ?', whereArgs: [pdfsAlreadyOpens.first.id]);
     }
 
     var saved = await db.insert(
       'lasts_pdf_opens',
-      {'path_pdf': pathPdf},
+      {'path_pdf': pathPdf, 'created_at': DateTime.now().toString()},
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
@@ -31,7 +31,7 @@ class LastPdfRepository {
 
     List<PdfViewerModel> list = result.map((row) {
       return PdfViewerModel(
-        id: row['id'] != null ? row['id'] as int : 0,
+        id: row['ID'] != null ? row['ID'] as int : 0,
         path: row['path_pdf'] as String,
         createdAt: row['created_at'] != null ? DateTime.parse(row['created_at'] as String) : null,
       );
