@@ -3,3 +3,5 @@
 
 ## Funcionamento
 <p>Aparece como opção de aplicativo para abrir pdf em qualquer parte do dispositivo</p>
+
+<p>Listar os ultimos pdfs abertos, para acesso rápido</p>
