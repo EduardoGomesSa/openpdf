@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:openpdf/src/controllers/last_pdf_controller.dart';
 import 'package:openpdf/src/models/pdf_viewer_model.dart';
 import 'package:openpdf/src/pages/widgets/pdf_viewer_page.dart';
+import 'package:printing/printing.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:path/path.dart' as path;
 
@@ -88,6 +90,11 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Visualizador de PDF'),
+        actions: [
+          IconButton(onPressed: () async {
+            Printing.sharePdf(bytes: await File(_sharedFiles.first.path).readAsBytes());
+          }, icon: const Icon(Icons.share, color: Colors.black,)),
+        ],
       ),
       body: _sharedFiles.isNotEmpty && _sharedFiles.first.path.isNotEmpty
           ? PdfViewerPage(path: _sharedFiles.first.path)
