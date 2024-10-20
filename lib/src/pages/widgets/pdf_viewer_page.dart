@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+
 class PdfViewerPage extends StatefulWidget {
   const PdfViewerPage({super.key, required this.path});
 
@@ -27,24 +29,19 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
     return Scaffold(
       body: Stack(
         children: [
-          PDFView(
-            filePath: widget.path,
-            enableSwipe: true,
-            swipeHorizontal: true,
-            autoSpacing: true,
-            pageFling: true,
-            onRender: (pages) {
+          SfPdfViewer.file(
+            File(widget.path),
+            enableTextSelection: true,
+            onDocumentLoaded: (PdfDocumentLoadedDetails details) {
               setState(() {
-                totalPages = pages;
+                totalPages = details.document.pages.count;
               });
             },
-            onPageChanged: (page, total) {
+            onPageChanged: (PdfPageChangedDetails details) {
               setState(() {
-                currentPage = page;
+                currentPage = details.newPageNumber;
                 showPageIndicator = true;
               });
-
-              // Reinicia o temporizador para esconder a faixa após 5 segundos
               hideTimer?.cancel();
               hideTimer = Timer(const Duration(seconds: 3), () {
                 setState(() {
