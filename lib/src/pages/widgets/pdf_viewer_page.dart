@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:printing/printing.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class PdfViewerPage extends StatefulWidget {
@@ -17,6 +19,8 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
   int? totalPages = 0;
   bool showPageIndicator = false;
   Timer? hideTimer;
+  String selectedText = "";
+  bool isCopyButtonVisible = false;
 
   @override
   void dispose() {
@@ -27,11 +31,34 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          if (isCopyButtonVisible) // Exibe o botão apenas se houver texto selecionado
+            IconButton(
+              icon: const Icon(Icons.copy),
+              onPressed: () {
+                Clipboard.setData(ClipboardData(text: selectedText));
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Texto copiado para a área de transferência')),
+                );
+              },
+            ),
+          IconButton(onPressed: () async {
+            Printing.sharePdf(bytes: await File(widget.path).readAsBytes());
+          }, icon: const Icon(Icons.share, color: Colors.black,)),
+        ],
+      ),
       body: Stack(
         children: [
           SfPdfViewer.file(
             File(widget.path),
             enableTextSelection: true,
+             onTextSelectionChanged: (details) {
+              setState(() {
+                selectedText = details.selectedText != null && details.selectedText != '' ? details.selectedText! : '';
+                isCopyButtonVisible = details.selectedText != null && details.selectedText!.isNotEmpty; // Atualiza a visibilidade do botão
+              });
+            },
             onDocumentLoaded: (PdfDocumentLoadedDetails details) {
               setState(() {
                 totalPages = details.document.pages.count;
@@ -71,4 +98,22 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
       ),
     );
   }
+
+  //  void showCopyButton(String selectedText) {
+  //   // Exibe um SnackBar com a opção de copiar o texto selecionado
+  //   ScaffoldMessenger.of(context).showSnackBar(
+  //     SnackBar(
+  //       content: Text(''),
+  //       action: SnackBarAction(
+  //         label: 'Copiar',
+  //         onPressed: () {
+  //           Clipboard.setData(ClipboardData(text: selectedText));
+  //           ScaffoldMessenger.of(context).showSnackBar(
+  //             const SnackBar(content: Text('Texto copiado para a área de transferência')),
+  //           );
+  //         },
+  //       ),
+  //     ),
+  //   );
+  // }
 }

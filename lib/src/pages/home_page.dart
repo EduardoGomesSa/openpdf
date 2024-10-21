@@ -90,11 +90,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Visualizador de PDF'),
-        actions: [
-          IconButton(onPressed: () async {
-            Printing.sharePdf(bytes: await File(_sharedFiles.first.path).readAsBytes());
-          }, icon: const Icon(Icons.share, color: Colors.black,)),
-        ],
       ),
       body: _sharedFiles.isNotEmpty && _sharedFiles.first.path.isNotEmpty
           ? PdfViewerPage(path: _sharedFiles.first.path)
