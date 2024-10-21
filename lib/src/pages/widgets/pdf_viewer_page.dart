@@ -19,7 +19,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
   int? totalPages = 0;
   bool showPageIndicator = false;
   Timer? hideTimer;
-  String selectedText = "";
+  String? selectedText = "";
   bool isCopyButtonVisible = false;
 
   @override
@@ -33,19 +33,30 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          if (isCopyButtonVisible) // Exibe o botão apenas se houver texto selecionado
+          if (isCopyButtonVisible)
             IconButton(
               icon: const Icon(Icons.copy),
               onPressed: () {
-                Clipboard.setData(ClipboardData(text: selectedText));
+                Clipboard.setData(ClipboardData(text: selectedText!));
+                setState(() {
+                  selectedText = null;
+                  isCopyButtonVisible = false;
+                });
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Texto copiado para a área de transferência')),
+                  const SnackBar(
+                      content:
+                          Text('Texto copiado para a área de transferência')),
                 );
               },
             ),
-          IconButton(onPressed: () async {
-            Printing.sharePdf(bytes: await File(widget.path).readAsBytes());
-          }, icon: const Icon(Icons.share, color: Colors.black,)),
+          IconButton(
+              onPressed: () async {
+                Printing.sharePdf(bytes: await File(widget.path).readAsBytes());
+              },
+              icon: const Icon(
+                Icons.share,
+                color: Colors.black,
+              )),
         ],
       ),
       body: Stack(
@@ -53,10 +64,15 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
           SfPdfViewer.file(
             File(widget.path),
             enableTextSelection: true,
-             onTextSelectionChanged: (details) {
+            onTextSelectionChanged: (details) {
               setState(() {
-                selectedText = details.selectedText != null && details.selectedText != '' ? details.selectedText! : '';
-                isCopyButtonVisible = details.selectedText != null && details.selectedText!.isNotEmpty; // Atualiza a visibilidade do botão
+                selectedText =
+                    details.selectedText != null && details.selectedText != ''
+                        ? details.selectedText!
+                        : '';
+                isCopyButtonVisible = details.selectedText != null &&
+                    details.selectedText!
+                        .isNotEmpty;
               });
             },
             onDocumentLoaded: (PdfDocumentLoadedDetails details) {
