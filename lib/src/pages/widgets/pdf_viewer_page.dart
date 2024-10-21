@@ -21,10 +21,18 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
   Timer? hideTimer;
   String? selectedText = "";
   bool isCopyButtonVisible = false;
+  late PdfViewerController pdfViewerController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    pdfViewerController = PdfViewerController();
+  }
 
   @override
   void dispose() {
-    hideTimer?.cancel(); // Cancela o Timer ao sair da página
+    hideTimer?.cancel();
     super.dispose();
   }
 
@@ -35,20 +43,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
         actions: [
           if (isCopyButtonVisible)
             IconButton(
-              icon: const Icon(Icons.copy),
-              onPressed: () {
-                Clipboard.setData(ClipboardData(text: selectedText!));
-                setState(() {
-                  selectedText = null;
-                  isCopyButtonVisible = false;
-                });
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                      content:
-                          Text('Texto copiado para a área de transferência')),
-                );
-              },
-            ),
+                icon: const Icon(Icons.copy), onPressed: copyTextToClipboard),
           IconButton(
               onPressed: () async {
                 Printing.sharePdf(bytes: await File(widget.path).readAsBytes());
@@ -64,6 +59,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
           SfPdfViewer.file(
             File(widget.path),
             enableTextSelection: true,
+            controller: pdfViewerController,
             onTextSelectionChanged: (details) {
               setState(() {
                 selectedText =
@@ -71,8 +67,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
                         ? details.selectedText!
                         : '';
                 isCopyButtonVisible = details.selectedText != null &&
-                    details.selectedText!
-                        .isNotEmpty;
+                    details.selectedText!.isNotEmpty;
               });
             },
             onDocumentLoaded: (PdfDocumentLoadedDetails details) {
@@ -93,7 +88,6 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
               });
             },
           ),
-          // Colocando o Positioned depois do PDFView para garantir que ele seja exibido por cima
           if (showPageIndicator)
             Positioned(
               bottom: 5,
@@ -115,21 +109,16 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
     );
   }
 
-  //  void showCopyButton(String selectedText) {
-  //   // Exibe um SnackBar com a opção de copiar o texto selecionado
-  //   ScaffoldMessenger.of(context).showSnackBar(
-  //     SnackBar(
-  //       content: Text(''),
-  //       action: SnackBarAction(
-  //         label: 'Copiar',
-  //         onPressed: () {
-  //           Clipboard.setData(ClipboardData(text: selectedText));
-  //           ScaffoldMessenger.of(context).showSnackBar(
-  //             const SnackBar(content: Text('Texto copiado para a área de transferência')),
-  //           );
-  //         },
-  //       ),
-  //     ),
-  //   );
-  // }
+  void copyTextToClipboard() {
+    if (selectedText != null && selectedText!.isNotEmpty) {
+      Clipboard.setData(ClipboardData(text: selectedText!)).then((_) {
+        setState(() {
+          selectedText = null;
+          isCopyButtonVisible = false;
+        });
+
+        pdfViewerController.jumpToPage(currentPage!);
+      });
+    }
+  }
 }
