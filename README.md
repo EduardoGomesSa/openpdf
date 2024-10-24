@@ -7,3 +7,5 @@
 <p>Listar os ultimos pdfs abertos, para acesso rápido</p>
 
 <p>Deletar os mais antigos da lista</p>
+
+## Bibliotecas utilizadas
