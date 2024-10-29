@@ -1,5 +1,11 @@
 # openpdf
-<p>Um software que permite a abertura de arquivos pdf</p>
+## Sobre
+<p>Visando resolver um problema que estava enfrentando, encontrar um app para abrir PDFs eficiente e gratuíto,
+  decidi conciliar meus estudos em desenvolvimento mobile com esse problema, para o resolver</p>
+<p>No planejamento, decidi que ele deveria ser o mais simples e intuitivo possível, 
+  para que futuros usuários não tivessem problemas em aprender a utilizá-lo. Outro fator considerado foi o desempenho, 
+  sendo elaborado um plano para que o app consumisse poucos recursos do dispositivo</p>
+<p>Esta é a versão um, espero que gostem e possa ser útil</p>
 
 ## Funcionamento
 <p>Aparece como opção de aplicativo para abrir pdf em qualquer parte do dispositivo</p>
