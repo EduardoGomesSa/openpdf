@@ -1,12 +1,10 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:openpdf/src/controllers/last_pdf_controller.dart';
 import 'package:openpdf/src/models/pdf_viewer_model.dart';
 import 'package:openpdf/src/pages/widgets/pdf_viewer_page.dart';
-import 'package:printing/printing.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:path/path.dart' as path;
 
@@ -38,12 +36,8 @@ class _HomePageState extends State<HomePage> {
         if (_sharedFiles.isNotEmpty) {
           _addPdf(_sharedFiles.first.path);
         }
-
-        print(_sharedFiles.map((f) => f.toMap()));
       });
-    }, onError: (err) {
-      print("getIntentDataStream error: $err");
-    });
+    }, onError: (err) {});
 
     // Get the media sharing coming from outside the app while the app is closed.
     ReceiveSharingIntent.instance.getInitialMedia().then((value) {
@@ -54,7 +48,6 @@ class _HomePageState extends State<HomePage> {
         if (_sharedFiles.isNotEmpty) {
           _addPdf(_sharedFiles.first.path);
         }
-        print(_sharedFiles.map((f) => f.toMap()));
 
         // Tell the library that we are done processing the intent.
         ReceiveSharingIntent.instance.reset();
@@ -73,7 +66,6 @@ class _HomePageState extends State<HomePage> {
 
     setState(() {
       listPdfOpens = result;
-      print("CAMINHO --> ${listPdfOpens.first.path}");
     });
   }
 
@@ -100,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                     final pdf = listPdfOpens[index];
                     final fileName =
                         path.basename(pdf.path ?? "Caminho não encontrado");
-              
+
                     return Align(
                       alignment: Alignment.centerLeft,
                       child: TextButton(
@@ -112,7 +104,8 @@ class _HomePageState extends State<HomePage> {
                                     PdfViewerPage(path: pdf.path!)),
                           );
                         },
-                        child: Text('$fileName - ${pdf.createdAt != null ? dateFormat.format(pdf.createdAt!) : "Horário não disponível"}'),
+                        child: Text(
+                            '$fileName - ${pdf.createdAt != null ? dateFormat.format(pdf.createdAt!) : "Horário não disponível"}'),
                       ),
                     );
                   },
