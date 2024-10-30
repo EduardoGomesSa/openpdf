@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:openpdf/src/controllers/last_pdf_controller.dart';
 import 'package:openpdf/src/models/pdf_viewer_model.dart';
+import 'package:openpdf/src/pages/widgets/custom_app_bar_widget.dart';
 import 'package:openpdf/src/pages/widgets/pdf_viewer_page.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:path/path.dart' as path;
@@ -80,9 +81,7 @@ class _HomePageState extends State<HomePage> {
     final dateFormat = DateFormat('dd/MM/yy HH:mm:ss');
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Visualizador de PDF'),
-      ),
+      appBar: const CustomAppBarWidget(),
       body: _sharedFiles.isNotEmpty && _sharedFiles.first.path.isNotEmpty
           ? PdfViewerPage(path: _sharedFiles.first.path)
           : listPdfOpens.isNotEmpty
