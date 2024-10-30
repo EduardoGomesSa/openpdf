@@ -59,6 +59,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
         children: [
           SfPdfViewer.file(
             canShowScrollHead: showPageIndicator,
+            canShowScrollStatus: false,
             File(widget.path),
             enableTextSelection: true,
             controller: pdfViewerController,
