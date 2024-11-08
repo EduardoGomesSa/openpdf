@@ -47,7 +47,10 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
                 icon: const Icon(Icons.copy), onPressed: copyTextToClipboard),
           IconButton(
               onPressed: () async {
-                Printing.sharePdf(bytes: await File(widget.path).readAsBytes());
+                Printing.sharePdf(
+                  filename: widget.path.split('/').last,
+                  bytes: await File(widget.path).readAsBytes(),
+                );
               },
               icon: const Icon(
                 Icons.share,
