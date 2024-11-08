@@ -24,12 +24,14 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
   String? selectedText = "";
   bool isCopyButtonVisible = false;
   late PdfViewerController pdfViewerController;
+  String nameFile = '';
 
   @override
   void initState() {
     super.initState();
 
     pdfViewerController = PdfViewerController();
+    nameFile = widget.path.split('/').last;
   }
 
   @override
@@ -42,7 +44,9 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
     final pdfBytes = await File(widget.path).readAsBytes();
 
     await Printing.layoutPdf(
-       onLayout: (PdfPageFormat format) async => pdfBytes,);
+      name: nameFile,
+      onLayout: (PdfPageFormat format) async => pdfBytes,
+    );
   }
 
   @override
@@ -56,7 +60,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
           IconButton(
             onPressed: () async {
               Printing.sharePdf(
-                filename: widget.path.split('/').last,
+                filename: nameFile,
                 bytes: await File(widget.path).readAsBytes(),
               );
             },
