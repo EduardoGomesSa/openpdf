@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:openpdf/src/pages/widgets/custom_app_bar_widget.dart';
+import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
@@ -37,6 +38,13 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
     super.dispose();
   }
 
+  Future<void> _saveAsPdf() async {
+    final pdfBytes = await File(widget.path).readAsBytes();
+
+    await Printing.layoutPdf(
+       onLayout: (PdfPageFormat format) async => pdfBytes,);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,16 +54,21 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
             IconButton(
                 icon: const Icon(Icons.copy), onPressed: copyTextToClipboard),
           IconButton(
-              onPressed: () async {
-                Printing.sharePdf(
-                  filename: widget.path.split('/').last,
-                  bytes: await File(widget.path).readAsBytes(),
-                );
-              },
-              icon: const Icon(
-                Icons.share,
-                color: Colors.black,
-              )),
+            onPressed: () async {
+              Printing.sharePdf(
+                filename: widget.path.split('/').last,
+                bytes: await File(widget.path).readAsBytes(),
+              );
+            },
+            icon: const Icon(
+              Icons.share,
+              color: Colors.black,
+            ),
+          ),
+          IconButton(
+            onPressed: _saveAsPdf,
+            icon: const Icon(Icons.save),
+          )
         ],
       ),
       body: Stack(
