@@ -90,43 +90,40 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: const CustomAppBarWidget(),
-      body: _sharedFiles.isNotEmpty && _sharedFiles.first.path.isNotEmpty
-          ? PdfViewerPage(path: _sharedFiles.first.path)
-          : listPdfOpens.isNotEmpty
-              ? ListView.builder(
-                  itemCount: listPdfOpens.length,
-                  itemBuilder: (context, index) {
-                    final pdf = listPdfOpens[index];
-                    final fileName =
-                        path.basename(pdf.path ?? "Caminho não encontrado");
+      body: listPdfOpens.isNotEmpty
+          ? ListView.builder(
+              itemCount: listPdfOpens.length,
+              itemBuilder: (context, index) {
+                final pdf = listPdfOpens[index];
+                final fileName =
+                    path.basename(pdf.path ?? "Caminho não encontrado");
 
-                    return Align(
-                      alignment: Alignment.centerLeft,
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  PdfViewerPage(path: pdf.path!),
-                            ),
-                          );
-                        },
-                        child: Text(
-                            '$fileName - ${pdf.createdAt != null ? dateFormat.format(pdf.createdAt!) : "Horário não disponível"}'),
-                      ),
-                    );
-                  },
-                )
-              : const Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Nenhum arquivo selecionado"),
-                      Text("Nenhum PDF aberto")
-                    ],
+                return Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PdfViewerPage(path: pdf.path!),
+                        ),
+                      );
+                    },
+                    child: Text(
+                        '$fileName - ${pdf.createdAt != null ? dateFormat.format(pdf.createdAt!) : "Horário não disponível"}'),
                   ),
-                ),
+                );
+              },
+            )
+          : const Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Nenhum arquivo selecionado"),
+                  Text("Nenhum PDF aberto")
+                ],
+              ),
+            ),
     );
   }
 }
