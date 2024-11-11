@@ -9,10 +9,17 @@ class LastPdfRepository {
 
     var pdfsAlreadyOpens = await getAll();
 
-    if (pdfsAlreadyOpens.length >= 10) {
-      db.delete('lasts_pdf_opens',
+    while(pdfsAlreadyOpens.length > 10) {
+      await db.delete('lasts_pdf_opens',
           where: 'ID = ?', whereArgs: [pdfsAlreadyOpens.last.id]);
+
+      pdfsAlreadyOpens = await getAll();
     }
+
+    // if (pdfsAlreadyOpens.length >= 10) {
+    //   db.delete('lasts_pdf_opens',
+    //       where: 'ID = ?', whereArgs: [pdfsAlreadyOpens.last.id]);
+    // }
 
     var saved = await db.insert(
       'lasts_pdf_opens',
