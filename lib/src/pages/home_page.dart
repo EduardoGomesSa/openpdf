@@ -96,11 +96,12 @@ class _HomePageState extends State<HomePage> {
                       alignment: Alignment.centerLeft,
                       child: TextButton(
                         onPressed: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    PdfViewerPage(path: pdf.path!)),
+                              builder: (context) =>
+                                  PdfViewerPage(path: pdf.path!),
+                            ),
                           );
                         },
                         child: Text(
