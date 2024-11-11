@@ -48,6 +48,14 @@ class _HomePageState extends State<HomePage> {
 
         if (_sharedFiles.isNotEmpty) {
           _addPdf(_sharedFiles.first.path);
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  PdfViewerPage(path: _sharedFiles.first.path),
+            ),
+          );
         }
 
         // Tell the library that we are done processing the intent.
@@ -96,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                       alignment: Alignment.centerLeft,
                       child: TextButton(
                         onPressed: () {
-                          Navigator.pushReplacement(
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
