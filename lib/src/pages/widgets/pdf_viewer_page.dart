@@ -56,7 +56,9 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
         actions: [
           if (isCopyButtonVisible)
             IconButton(
-                icon: const Icon(Icons.copy), onPressed: copyTextToClipboard),
+              icon: const Icon(Icons.copy),
+              onPressed: copyTextToClipboard,
+            ),
           IconButton(
             onPressed: () async {
               Printing.sharePdf(
@@ -66,7 +68,6 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
             },
             icon: const Icon(
               Icons.share,
-              color: Colors.black,
             ),
           ),
           IconButton(
