@@ -20,3 +20,7 @@
 - ``syncfusion_flutter_pdfviewer``: Biblioteca que facilita a abertura e manipulação de PDF
 - ``printing``: Biblioteca que facilita impressão e compartilhamento de PDFs
 - ``intl``: Biblioteca que facilita a manipulação de data e hora
+- ``pdf``: Biblioteca que permite a manipulação de arquivos no formato Uint8List
+## Telas
+![WhatsApp Image 2024-11-11 at 11 12 11 PM](https://github.com/user-attachments/assets/dfbd7470-f272-4f6d-a11c-e6bbffc219d5)
+![WhatsApp Image 2024-11-11 at 11 12 10 PM](https://github.com/user-attachments/assets/0880ffbc-71ae-415b-bb85-b88a24d74b6e)
