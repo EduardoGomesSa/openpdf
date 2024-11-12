@@ -98,20 +98,29 @@ class _HomePageState extends State<HomePage> {
                 final fileName =
                     path.basename(pdf.path ?? "Caminho não encontrado");
 
-                return Align(
-                  alignment: Alignment.centerLeft,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PdfViewerPage(path: pdf.path!),
-                        ),
-                      );
-                    },
-                    child: Text(
-                        '$fileName - ${pdf.createdAt != null ? dateFormat.format(pdf.createdAt!) : "Horário não disponível"}'),
-                  ),
+                return Column(
+                  children: [
+                    if(index == 0)
+                    const Padding(
+                      padding: EdgeInsets.only(top: 15, bottom: 10),
+                      child: Text("Últimos PDFs abertos", style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PdfViewerPage(path: pdf.path!),
+                            ),
+                          );
+                        },
+                        child: Text(
+                            '$fileName - ${pdf.createdAt != null ? dateFormat.format(pdf.createdAt!) : "Horário não disponível"}'),
+                      ),
+                    ),
+                  ],
                 );
               },
             )
