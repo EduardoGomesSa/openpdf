@@ -8,6 +8,7 @@ class CustomAppBarWidget extends StatelessWidget implements PreferredSizeWidget 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: Colors.blue,
       title: const Text('Visualizador de PDF'),
       actions: actions,
     );
