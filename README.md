@@ -7,12 +7,12 @@
   sendo elaborado um plano para que o app consumisse poucos recursos do dispositivo</p>
 <p>Esta é a versão um, espero que gostem e possa ser útil</p>
 
-## Funcionamento
-<p>Aparece como opção de aplicativo para abrir pdf em qualquer parte do dispositivo</p>
-
-<p>Listar os ultimos pdfs abertos, para acesso rápido</p>
-
-<p>Deletar os mais antigos da lista</p>
+## Funcionalidades
+- Abrir um arquivo com o app fechado
+- Histórico de últimos arquivos abertos
+- Opção de compartilhar arquivo
+- Opção de copiar partes do conteúdo do arquivo
+- Opção de salvar arquivo no dispositivo
 
 ## Tecnológias e bibliotecas utilizadas
 - ``Flutter``: Framework capaz de criar apps para as principais plataformas, como Android, IOS, Windos, Linux e Web
@@ -28,3 +28,4 @@
   <img src="https://github.com/user-attachments/assets/0880ffbc-71ae-415b-bb85-b88a24d74b6e" alt="figura 2" width="250"/>
 </p>
 
+🚧 Projeto em COnstrução 🚧
