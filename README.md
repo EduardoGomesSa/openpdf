@@ -1,4 +1,4 @@
-# openpdf
+# OpenPDF
 ## Sobre
 <p>Visando resolver um problema que estava enfrentando, encontrar um app para abrir PDFs eficiente e gratuíto,
   decidi conciliar meus estudos em desenvolvimento mobile com esse problema, para o resolver</p>
