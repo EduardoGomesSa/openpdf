@@ -21,11 +21,19 @@
 - ``printing``: Biblioteca que facilita impressão e compartilhamento de PDFs
 - ``intl``: Biblioteca que facilita a manipulação de data e hora
 - ``pdf``: Biblioteca que permite a manipulação de arquivos no formato Uint8List
+
+## Demonstrações
+<p align='left'>
+  <img src="https://github.com/user-attachments/assets/08a5e004-cd4c-49f3-83d3-e833fb6cecc5" alt="figura 1" width="250"/>
+  &nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/user-attachments/assets/f58a5d6a-afbb-4112-a33e-757658dbecc7" alt="figura 2" width="250"/>
+</p>
+
 ## Telas
 <p align='left'>
-  <img src="https://github.com/user-attachments/assets/dfbd7470-f272-4f6d-a11c-e6bbffc219d5" alt="figura 1" width="250"/>
+  <img src="https://github.com/user-attachments/assets/08a5e004-cd4c-49f3-83d3-e833fb6cecc5" alt="figura 1" width="250"/>
   &nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/user-attachments/assets/0880ffbc-71ae-415b-bb85-b88a24d74b6e" alt="figura 2" width="250"/>
+  <img src="https://github.com/user-attachments/assets/f58a5d6a-afbb-4112-a33e-757658dbecc7" alt="figura 2" width="250"/>
 </p>
 
 🚧 Projeto em COnstrução 🚧
