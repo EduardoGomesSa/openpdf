@@ -24,9 +24,9 @@
 
 ## Demonstrações
 <p align='left'>
-  <img src="https://github.com/user-attachments/assets/08a5e004-cd4c-49f3-83d3-e833fb6cecc5" alt="figura 1" width="250"/>
+  <img src="https://github.com/user-attachments/assets/865ca3dd-0482-489b-a244-f338323550c9" alt="figura 1" width="250"/>
   &nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/user-attachments/assets/f58a5d6a-afbb-4112-a33e-757658dbecc7" alt="figura 2" width="250"/>
+  <img src="https://github.com/user-attachments/assets/b702928b-727e-44e3-af05-a4402ed21649" alt="figura 2" width="250"/>
 </p>
 
 ## Telas
@@ -36,4 +36,5 @@
   <img src="https://github.com/user-attachments/assets/f58a5d6a-afbb-4112-a33e-757658dbecc7" alt="figura 2" width="250"/>
 </p>
 
-🚧 Projeto em COnstrução 🚧
+🚧 Projeto em COnstrução 🚧!
+
