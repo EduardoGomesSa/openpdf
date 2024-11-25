@@ -7,6 +7,12 @@
   sendo elaborado um plano para que o app consumisse poucos recursos do dispositivo</p>
 <p>Esta é a versão um, espero que gostem e possa ser útil</p>
 
+## Instalação
+Após o clone do repositório, instale as dependências executando o comando:
+```bash
+  flutter pub get
+```
+
 ## Funcionalidades
 - Abrir um arquivo com o app fechado
 - Histórico de últimos arquivos abertos
