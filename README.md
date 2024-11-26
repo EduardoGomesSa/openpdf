@@ -27,6 +27,7 @@ Após o clone do repositório, instale as dependências executando o comando:
 - ``printing``: Biblioteca que facilita impressão e compartilhamento de PDFs
 - ``intl``: Biblioteca que facilita a manipulação de data e hora
 - ``pdf``: Biblioteca que permite a manipulação de arquivos no formato Uint8List
+- ``M̀VC``: Arquitetura utilizada no projeto, consiste em um modelo com classes modelos, controladores e visualizadores, ajudando a organizar o código e evitar acúmulo de funções nas classes
 
 ## Demonstrações
 <p align='left'>
