@@ -43,5 +43,10 @@ Após o clone do repositório, instale as dependências executando o comando:
   <img src="https://github.com/user-attachments/assets/f58a5d6a-afbb-4112-a33e-757658dbecc7" alt="figura 2" width="250"/>
 </p>
 
+## Funcionalidades futuras:
+  - Digitalizar imagens
+  - Transformar imagens em PDF
+
+##
 🚧 Projeto em COnstrução 🚧!
 
