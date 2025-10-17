@@ -19,6 +19,8 @@ Após o clone do repositório, instale as dependências executando o comando:
 - Opção de compartilhar arquivo
 - Opção de copiar partes do conteúdo do arquivo
 - Opção de salvar arquivo no dispositivo
+- Scanear arquivos - ⏳
+- Digitalizar arquivos transcritos - ⏳
 
 ## Tecnológias e bibliotecas utilizadas
 - ``Flutter``: Framework capaz de criar apps para as principais plataformas, como Android, IOS, Windos, Linux e Web
